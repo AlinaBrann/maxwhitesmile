@@ -2,7 +2,8 @@
   <div class="feedback">
     <form>
       <inputText
-        label="Ваше имя"
+        label="Имя"
+        placeholder="Ваше имя"
         :field="email"
         @input="name = $event"
         :class="{ error: validationStatus($v.name) || this.errorMessage.name }"
@@ -13,6 +14,7 @@
       />
       <inputText
         label="E-mail"
+        placeholder="Ваш E-mail"
         :field="email"
         @input="email = $event"
         :class="{
@@ -29,6 +31,7 @@
 
       <textArea
         label="Сообщение"
+        placeholder="Текст обращения"
         :field="message"
         @input="message = $event"
         :class="{
@@ -59,7 +62,7 @@
       <div class="feedback__footer">
         <button
           type="button"
-          class="btn btn--primary loading"
+          class="btn btn--primary"
           @click="submit()"
           :class="{ loading: submitStatus == 'PENDING' }"
         >

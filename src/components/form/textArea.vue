@@ -55,21 +55,20 @@ export default {
 .form-textarea {
   display: block;
   max-width: 100%;
-  margin: 0 auto 20px;
+  margin: 0 auto rem(20px);
 
   &__field {
     resize: none;
-    min-height: 160px;
+    min-height: rem(160px);
     width: 100%;
-    font-size: 13px;
-    text-transform: uppercase;
+    font-size: rem(14px);
     border: 1px solid #a4a4a4;
     background: #ffffff;
-    padding: 14px 18px 14px;
+    padding: rem(15px) rem(15px);
     transition: all 0.3s ease-in-out;
   }
   &__field:focus {
-    border-color: #013f5d;
+    border-color: $red_font;
     outline: none;
   }
   &__caption {

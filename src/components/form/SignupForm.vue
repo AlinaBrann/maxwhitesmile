@@ -338,6 +338,7 @@ export default {
   }
 }
 .vue-dadata__suggestions {
+  box-shadow: 0 2px 6px #e2e1e1;
   mark {
     background: rgba($yellow, 0.5) !important;
   }
