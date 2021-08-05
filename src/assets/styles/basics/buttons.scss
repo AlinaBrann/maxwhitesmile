@@ -1,0 +1,104 @@
+.btn {
+    display: inline-block;
+    min-width: rem(254px);
+    max-width: 100%;
+    cursor: pointer;
+    text-align: center;
+    font-family: "Light";
+    font-size: rem(18px);
+    padding: rem(16px) rem(25px) rem(16px);
+    line-height: 1;
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+    &:focus {
+        outline: none;
+    }
+    &.loading {
+        pointer-events: none;
+        opacity: 0.8;
+    }
+    &--primary {
+        color: #000;
+        background: $yellow;
+        
+        border: 2px solid $yellow;
+        // min-width: 145px;
+    }
+
+    // &--default {
+
+    // }
+
+    &--primary:hover {
+        background: transparent;
+    }
+
+    &--lg {
+        font-size: 21px;
+        padding: 17px 44px 16px;
+        border-width: 3px;
+    }
+
+    &--secondary  {
+        background: none;
+        border: 2px solid $yellow;
+    }
+
+    &--secondary:hover {
+        background-color: $yellow;
+    }
+
+    &--save {
+        color: #FFFFFF;
+        font-size: 13px;
+        text-transform: uppercase;
+        background: #56A956;
+        border-radius: 40px;
+        padding: 5px 15px;
+    }
+    &--save:hover {
+        opacity: 0.8;
+    }
+
+    &--cancel {
+        color: #FFFFFF;
+        font-size: 13px;
+        text-transform: uppercase;
+        background: #BFD5E0;
+        border-radius: 40px;
+        padding: 5px 15px;
+    }
+    &--cancel:hover {
+        opacity: 0.8;
+    }
+
+    &--default {
+        color: #912982;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 1;
+        white-space: nowrap;
+        text-transform: uppercase;
+        padding: 17px 46px 13px;
+        border: 2px solid #FFF;
+        background: #FFF;
+        border-radius: 40px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    &--default:hover {
+        color: #FFF;
+        background-color: transparent;
+    }
+
+    &--sm {
+        padding: 7px 23px 6px;
+    }
+
+    @media (max-width: 1023px) {
+        &--lg {
+            font-size: 18px;
+            padding: 16px 25px 10px;
+        }
+    }
+}
