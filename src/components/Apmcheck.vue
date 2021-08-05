@@ -13,12 +13,14 @@ export default {
   },
 
   methods: {},
-
+  created() {
+    
+  },
   mounted() {
     this.ready = true;
 
     const t = this;
-
+    
     //console.log("apm");
 
     const widgetParams = {
@@ -43,7 +45,7 @@ export default {
           scanQr: {
             header: "регистрация чека",
             subheader:
-              'Изображения чека должно быть загружено полностью!<br><a href="" class="_red" target="_blank">Требования к кассовому чеку</a><br><a href="" class="_red" target="_blank">Требования к электронному чеку</a>',
+              'Изображения чека должно быть загружено полностью!<br><a href="#" class="_red modal-trigger">Требования к кассовому чеку</a>',
           },
           cameraNotAvailable: {
             subheader:

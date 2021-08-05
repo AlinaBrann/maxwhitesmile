@@ -38,7 +38,7 @@
             <button class="btn btn--primary" @click="toCheckUpload()">
               Зарегистрировать чек
             </button>
-            <button class="btn btn--secondary" @click="showModal('checks')">
+            <button class="btn btn--secondary" @click="showModalChecks()">
               Загруженные чеки
             </button>
           </div>
@@ -68,6 +68,7 @@ export default {
       phone: null,
       email: null,
       city: null,
+      checks: [],
       prizes: [],
       prizesTest: [
         {
@@ -93,6 +94,13 @@ export default {
     toCheckUpload() {
       let apmButton = document.querySelector("#apm-scan-qr .apm-action-button");
       if (apmButton) apmButton.click();
+      let $this = this;
+      let modalTrigger = document.querySelector('.modal-trigger')
+      modalTrigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        $this.$modal.show("check_requirements");
+      
+      });
     },
     showModal(name) {
       this.$modal.show(name);
@@ -100,7 +108,9 @@ export default {
     closeModal(name) {
       this.$modal.hide(name);
     },
-
+    showModalChecks(){
+      this.$modal.show("checks", { items: this.checks });
+    },
     logout() {
       this.$store.dispatch("LogOut");
       document.location.reload();
@@ -124,9 +134,15 @@ export default {
       this.password = response.result.profile.password;
       this.city = response.result.profile.city;
       this.countChecks = response.result.countChecks;
+      // this.prizes = response.result.prize;
     });
     this.$store.dispatch("GetPrizes").then((response) => {
       this.prizes = response.result;
+      
+    });
+    this.$store.dispatch("GetChecks").then((response) => {
+        
+        this.checks = response.result;
     });
   },
 };

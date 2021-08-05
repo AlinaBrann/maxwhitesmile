@@ -59,6 +59,7 @@ export default {
 <style lang="scss">
 .vm--container {
   overflow: auto;
+  z-index: 999999 !important;
   .vm--overlay {
     background: rgba(26, 21, 17, 0.85);
   }
@@ -150,6 +151,25 @@ export default {
       }
     }
   }
+  &__list {
+    width: 100%;
+    margin: auto;
+    &-item {
+      position: relative;
+      padding-left: rem(33px);
+      margin-bottom: rem(20px);
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: rem(8px);
+        width: rem(8px);
+        height: rem(8px);
+        border-radius: 50%;
+        background: $yellow;
+      }
+    }
+  }
   &-success {
     &__title {
       position: relative;
@@ -205,6 +225,9 @@ export default {
     }
     &__text {
       margin-top: rem(27px);
+    }
+    &__list {
+      width: 70%;
     }
     .btn {
       width: auto;

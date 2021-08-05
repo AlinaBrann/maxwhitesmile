@@ -76,9 +76,7 @@ export default {
           .then((r) => {
             if (r.error !== 0) {
               this.submitStatus = null;
-
-              this.$refs.recaptcha.reset();
-
+              
               let fieldsError = null;
 
               if (r.message && r.message.email) {

@@ -65,7 +65,7 @@
             </tr>
           </template>
         </Table>
-        <div class="modal__text" v-else>Чеков пока нет</div>
+        <div class="modal__text" v-else>У вас пока нет зарегистрированных чеков</div>
       </div>
     </template>
   </Modal>
@@ -147,7 +147,9 @@ export default {
     closeModal(name) {
       this.$modal.hide(name);
     },
-    beforeOpen() {},
+    beforeOpen(event) {
+      this.checks = event.params.items;
+    },
     openPhoto(item) {
       this.$modal.show("check_photo", { image: item });
     },
@@ -158,11 +160,7 @@ export default {
     },
   },
   mounted() {
-    if (this.$store.getters.user) {
-      this.$store.dispatch("GetChecks").then((response) => {
-        this.checks = response.result;
-      });
-    }
+
   },
 };
 </script>

@@ -58,7 +58,7 @@ export default {
     };
   },
   mounted() {
-    // this.$modal.show("signup");
+    // this.$modal.show("check_requirements");
 
     const params = this.$route.query;
     if (params.email === "0") {
@@ -86,11 +86,7 @@ export default {
     }
   },
   methods: {
-    toCheckUpload() {
-      let apmButton = document.querySelector("#apm-scan-qr .apm-action-button");
-      apmButton.click();
-      // this.$modal.show("temporarily_unavailable" );
-    },
+    
   },
   created() {},
 };

@@ -20,6 +20,7 @@
     <EnterCode />
     <CommonError />
     <TemporarilyUnavailable />
+    <CheckRequirements />
     <Checks />
     <CheckPhoto />
     <Apmcheck v-if="this.apmInit"></Apmcheck>
@@ -46,6 +47,7 @@ import SuccessRecover from "@/components/modals/successRecover.vue";
 import SuccessProfile from "@/components/modals/successProfile.vue";
 import SuccessFeedback from "@/components/modals/successFeedback.vue";
 import SuccessProfileDelete from "@/components/modals/successProfileDelete.vue";
+import CheckRequirements from "@/components/modals/checkRequirements.vue";
 
 //import UploadCheck from "@/components/modals/uploadCheck.vue";
 import CommonError from "@/components/modals/commonError.vue";
@@ -70,6 +72,7 @@ export default {
     SocSignup,
     SuccessFeedback,
     SuccessProfileDelete,
+    CheckRequirements,
     //  UploadCheck,
     CommonError,
     Apmcheck,

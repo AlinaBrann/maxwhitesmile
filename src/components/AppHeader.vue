@@ -134,10 +134,7 @@ export default {
         },
       ],
       retailsNav: [
-        {
-          path: "/",
-          logo: "pyaterochka",
-        },
+
         {
           path: "Dixy",
           logo: "dixy",
@@ -146,10 +143,7 @@ export default {
           path: "Megamart",
           logo: "megamart",
         },
-        {
-          path: "/",
-          logo: "viktoria",
-        },
+       
       ],
     };
   },
@@ -191,16 +185,7 @@ export default {
         header.classList.add("header--mob_active");
       else header.classList.remove("header--mob_active");
     },
-    toCheckUpload() {
-      if (this.$store.getters.user) {
-        let apmButton = document.querySelector(
-          "#apm-scan-qr .apm-action-button"
-        );
-        if (apmButton) apmButton.click();
-      } else {
-        this.$modal.show("authorization");
-      }
-    },
+
   },
   mounted() {},
 };

@@ -169,7 +169,7 @@ export default {
   },
 
   validations: {
-    phone: { required, minLength: minLength(11) },
+    phone: { minLength: minLength(11) },
     email: { required, email },
     name: { required, rus },
     lastname: { required, rus },

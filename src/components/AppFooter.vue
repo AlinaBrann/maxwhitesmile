@@ -28,7 +28,7 @@
       </div>
       <p class="footer__copyright">
         {{
-          "© 2020 Mars, Incorporated и ее филиалы. Все права защищены."
+          "© 2021 Mars, Incorporated и ее филиалы. Все права защищены."
             | typograf
         }}
       </p>

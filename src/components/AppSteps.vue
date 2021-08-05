@@ -59,18 +59,6 @@ export default {
     showModal(name) {
       this.$modal.show(name);
     },
-
-    toCheckUpload() {
-      // if (this.$store.getters.user) {
-      //   let apmButton = document.querySelector(
-      //     "#apm-scan-qr .apm-action-button"
-      //   );
-      //   if (apmButton) apmButton.click();
-      // } else {
-      //   this.$modal.show("authorization");
-      // }
-      this.$modal.show("temporarily_unavailable");
-    },
   },
   mounted() {
     
