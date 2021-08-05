@@ -81,7 +81,6 @@
 
       <ul class="winners__pagination">
         <li
-          type="button"
           class="winners__pagination-item"
           v-if="page != 1"
           @click="page--"
@@ -100,7 +99,6 @@
           </svg>
         </li>
         <li
-          type="button"
           class="winners__pagination-item"
           v-for="pageNumber in pages"
           :key="pageNumber"
@@ -356,30 +354,20 @@ export default {
   padding: rem(70px) 0;
   align-items: center;
   z-index: 1;
-  background: $red_font;
+  background: url('../assets/images/background.jpg') no-repeat center;
+  background-size: cover;
   overflow: hidden;
-  &:before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 90%;
-    height: 90%;
-    transform: translate(-50%, -50%);
-    background: #d03969;
-    filter: blur(400px);
-    z-index: 0;
-  }
+  
   &__background {
     position: absolute;
     display: none;
     &._left {
       bottom: 0;
-      left: 0;
+      left: rem(-10px);
     }
     &._right {
       top: 0;
-      right: 0;
+      right: rem(-10px);
     }
   }
   &__title {

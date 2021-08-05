@@ -92,21 +92,9 @@ export default {
   padding: rem(50px) 0 rem(20px);
   &._pink {
     color: #fff;
-    background: $red_font;
+    background: url('../assets/images/background.jpg') no-repeat center;
+    background-size: cover;
     overflow: hidden;
-    &:before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 90%;
-      height: 90%;
-      transform: translate(-50%, -50%);
-      background: #d03969;
-      border-radius: 50%;
-      filter: blur(400px);
-      z-index: 0;
-    }
   }
   &__background {
     position: absolute;

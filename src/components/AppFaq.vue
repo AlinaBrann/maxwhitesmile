@@ -85,21 +85,9 @@ export default {
   padding-bottom: rem(70px);
   z-index: 1;
   &._pink {
-    background: $red_font;
+    background: url('../assets/images/background.jpg') no-repeat center;
+    background-size: cover;
     overflow: hidden;
-    &:before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 90%;
-      height: 90%;
-      transform: translate(-50%, -50%);
-      background: #d03969;
-      filter: blur(400px);
-      border-radius: 50%;
-      z-index: 0;
-    }
     
   }
   .container {
