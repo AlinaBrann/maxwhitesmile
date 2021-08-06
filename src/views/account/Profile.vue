@@ -44,13 +44,16 @@
           </div>
           <a href="#" @click.prevent="deleteProfile()" class="account__delete _outside-prizes" v-if="!prizes">Удалить учетную запись</a>
         </div>
+        <div class="account__header" v-if="!prizes">
+          <h2 class="account__header-title">У вас пока нет призов</h2>
+        </div>
       </div>
     </div>
 
     <PrizesBlock styleType="pink" title="Выигранные призы" v-if="prizes" :prizes="prizes">
       <a href="#" @click.prevent="deleteProfile()" class="account__delete">Удалить учетную запись</a>
     </PrizesBlock>
-    
+
   </div>
 </template>
 
@@ -99,7 +102,7 @@ export default {
       modalTrigger.addEventListener('click', function(e) {
         e.preventDefault();
         $this.$modal.show("check_requirements");
-      
+
       });
     },
     showModal(name) {
@@ -120,7 +123,7 @@ export default {
         this.$store.dispatch("LogOut");
         this.$modal.show("success_delete");
       });
-      
+
     },
   },
   mounted() {
@@ -138,10 +141,10 @@ export default {
     });
     this.$store.dispatch("GetPrizes").then((response) => {
       this.prizes = response.result;
-      
+
     });
     this.$store.dispatch("GetChecks").then((response) => {
-        
+
         this.checks = response.result;
     });
   },

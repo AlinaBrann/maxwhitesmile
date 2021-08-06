@@ -62,7 +62,7 @@ export default {
         {
           img: "steps_1.svg",
           title: "АКТИВИРУЙТЕ",
-          text: "купон на&nbsp;участие в&nbsp;акции в&nbsp;приложении <a  href=''>&laquo;Клуб&nbsp;Друзей&nbsp;Дикси&raquo;</a>",
+          text: "купон на&nbsp;участие в&nbsp;акции в&nbsp;приложении <a href='https://dixy.ru/club/'>&laquo;Клуб&nbsp;Друзей&nbsp;Дикси&raquo;</a>",
         },
         {
           img: "steps_2.svg",
@@ -147,7 +147,40 @@ export default {
         },
         {
           title: "Какой продукт участвует в&nbsp;Акции?",
-          text: "Акция проводится в&nbsp;отношении шоколадной продукции ООО &laquo;Марс&raquo;(кроме продуктов с&nbsp;надписями &laquo;Не&nbsp;для продажи&raquo;, &laquo;Продукт предназначен для бесплатного распространения&raquo; на&nbsp;упаковке), под товарными знаками: Коркунов<sup class='reg'>&reg;</sup>(шоколадные конфеты в&nbsp;коробах), DOVE<sup class='reg'>&reg;</sup>(шоколадные конфеты в&nbsp;коробах), Snickers<sup class='reg'>&reg;</sup>, Bounty<sup class='reg'>&reg;</sup>, Twix<sup class='reg'>&reg;</sup>, Milky way<sup class='reg'>&reg;</sup>, плиточный шоколад M&amp;M&rsquo;s<sup class='reg'>&reg;</sup>, драже Skittles<sup class='reg'>&reg;</sup> с&nbsp;целью формирования и&nbsp;поддержания интереса к&nbsp;Продуктам, а&nbsp;также стимулирования продаж Продуктов. Полный список Продуктов, участвующих в&nbsp;Акции приведен в&nbsp;Приложении &#8470;&nbsp;1&nbsp;к настоящим Правилам.<br>Батончик Twix<sup class='reg'>&reg;</sup> Мультипак (3*55грамм)<br>Батончик Snickers<sup class='reg'>&reg;</sup> Мультипак 4*40грамм<br>Драже Skittles<sup class='reg'>&reg;</sup> Кисломикс 70&nbsp;грамм<br>Драже Skittles<sup class='reg'>&reg;</sup> 2&nbsp;В 1 70грамм<br>Драже Skittles<sup class='reg'>&reg;</sup> Фрукты 70грамм<br>Драже Skittles<sup class='reg'>&reg;</sup> Фрукты 140грамм<br>Конфеты Коркунов<sup class='reg'>&reg;</sup><br>Ассорти Темный Молочный 192 грамм<br>Печенье Twix Top<sup class='reg'>&reg;</sup>/Твикс Топ Minies <br>Набор Конфет DOVE<sup class='reg'>&reg;</sup>(Дав Promises Ассорти) 118 грамм <br>Коркунов<sup class='reg'>&reg;</sup> Коллекция Плиток 131грамм<br>M&amp;M&rsquo;s<sup class='reg'>&reg;</sup> Молочный Шоколад С&nbsp;Разноцветным Драже 125 грамм<br>M&amp;M&rsquo;s<sup class='reg'>&reg;</sup> Молочный шоколад, Миндаль и&nbsp;Разноцвет. Драже 122г<br>Конфеты Twix<sup class='reg'>&reg;</sup> Minis (Твикс Минис 1кг)<br>Конфеты Snickers<sup class='reg'>&reg;</sup> Minies (Сникерс Минис 1&nbsp;кг)<br>Конфеты Milky Way<sup class='reg'>&reg;</sup>Милки (Вэй Минис 1кг) <br>Конфеты Bounty<sup class='reg'>&reg;</sup> Minis (Баунти Минис 1кг)<br>Полные правила Акции доступны на&nbsp;сайте <a class='link' href='www.promo.korkunov.ru/dixy' target='_blank'>www.promo.korkunov.ru/dixy</a>",
+          text: "Акция проводится в&nbsp;отношении шоколадной продукции ООО &laquo;Марс&raquo;(кроме продуктов с&nbsp;надписями &laquo;Не&nbsp;для продажи&raquo;, &laquo;Продукт предназначен для бесплатного распространения&raquo; на&nbsp;упаковке), под товарными знаками: Коркунов<sup class='reg'>&reg;</sup>(шоколадные конфеты в&nbsp;коробах), DOVE<sup class='reg'>&reg;</sup>(шоколадные конфеты в&nbsp;коробах), Snickers<sup class='reg'>&reg;</sup>, Bounty<sup class='reg'>&reg;</sup>, Twix<sup class='reg'>&reg;</sup>, Milky way<sup class='reg'>&reg;</sup>, плиточный шоколад M&amp;M&rsquo;s<sup class='reg'>&reg;</sup>, драже Skittles<sup class='reg'>&reg;</sup> с&nbsp;целью формирования и&nbsp;поддержания интереса к&nbsp;Продуктам, а&nbsp;также стимулирования продаж Продуктов. Полный список Продуктов, участвующих в&nbsp;Акции приведен в&nbsp;Приложении &#8470;&nbsp;1&nbsp;к настоящим Правилам.<br>Драже Skittles<sup class=\"reg\">&reg;</sup> Кисломикс 70&nbsp;грамм<br />\n" +
+              "Драже Skittles<sup class=\"reg\">&reg;</sup> 2&nbsp;В 1 70грамм<br />\n" +
+              "Драже Skittles<sup class=\"reg\">&reg;</sup> Фрукты 70грамм<br />\n" +
+              "Драже Skittles<sup class=\"reg\">&reg;</sup> Фрукты140грамм<br />\n" +
+              "КонфетыBounty<sup class=\"reg\">&reg;</sup> Minis (БаунтиМинисвесовые)<br />\n" +
+              "КонфетыMilkyWay<sup class=\"reg\">&reg;</sup> Minis (МилкиВэйМинисвесовые)<br />\n" +
+              "Печенье Twix<sup class=\"reg\">&reg;</sup> Minis (ТвиксМинисвесовые)<br />\n" +
+              "КонфетыSnickers<sup class=\"reg\">&reg;</sup> Minis (СникерсМинисвесовые)<br />\n" +
+              "M&amp;M&rsquo;s<sup class=\"reg\">&reg;</sup> Молочный Шоколад С&nbsp;Разноцветным Драже 125 грамм<br />\n" +
+              "M&amp;M&rsquo;s<sup class=\"reg\">&reg;</sup> Молочный шоколад, Миндаль и&nbsp;Разноцвет. Драже 122г<br />\n" +
+              "Коркунов<sup class=\"reg\">&reg;</sup> Коллекция Плиток 131грамм<br />\n" +
+              "Набор Конфет DOVE<sup class=\"reg\">&reg;</sup>(Дав Promises Ассорти) 118 грамм<br />\n" +
+              "Конфеты Коркунов<sup class=\"reg\">&reg;</sup> Ассорти Темный Молочный 192/190грамм<br />\n" +
+              "ПеченьеTwixTop<sup class=\"reg\">&reg;</sup>/ТвиксТопMinies<br />\n" +
+              "Батончик Twix<sup class=\"reg\">&reg;</sup> Мультипак(3*55грамм)<br />\n" +
+              "Батончик Snickers<sup class=\"reg\">&reg;</sup> Мультипак 4*40грамм<br />\n" +
+              "Батончик Snickers<sup class=\"reg\">&reg;</sup>ЛЕСНОЙ ОРЕХ 81Г<br />\n" +
+              "Шоколадный батончик Twix<sup class=\"reg\">&reg;</sup> Соленая Карамель<br />\n" +
+              "Ш.Конф.Minis Snickers/Twix/MilkywayВАсс.176/184г<br />\n" +
+              "Драже M&amp;M&rsquo;s<sup class=\"reg\">&reg;</sup> С&nbsp;Арахисом 45/50г<br />\n" +
+              "Драже M&amp;M&rsquo;s<sup class=\"reg\">&reg;</sup> С&nbsp;Шоколадом 45/50г<br />\n" +
+              "Драже M&amp;M&rsquo;s<sup class=\"reg\">&reg;</sup>Криспи 36г<br />\n" +
+              "Драже M&amp;M&rsquo;s<sup class=\"reg\">&reg;</sup> Арахис/Мол.Шок/Криспи В&nbsp;Асс.140<br />\n" +
+              "Драже Skittles<sup class=\"reg\">&reg;</sup> Фрукты В&nbsp;Сах.Глазури 38г<br />\n" +
+              "Драже Skittles<sup class=\"reg\">&reg;</sup>Кисломикс 38г<br />\n" +
+              "Шок.Батончик Bounty<sup class=\"reg\">&reg;</sup> 55г<br />\n" +
+              "Шок.Батончик Bounty<sup class=\"reg\">&reg;</sup> Трио&nbsp;82,5г<br />\n" +
+              "Шок.Батончик Twix<sup class=\"reg\">&reg;</sup> 55г<br />\n" +
+              "Шок.Батончик Twix<sup class=\"reg\">&reg;</sup> Экстра 82г<br />\n" +
+              "Шок. Батончик Snickers<sup class=\"reg\">&reg;</sup> Стандарт&nbsp;50,5&nbsp;Г<br />\n" +
+              "Шок.Батончик Snickers<sup class=\"reg\">&reg;</sup> Super 80г<br />\n" +
+              "Шок.БатончикMilky Way<sup class=\"reg\">&reg;</sup> 26г<br />\n" +
+              "Шок.БатончикMilky Way<sup class=\"reg\">&reg;</sup>/Милки Вей 2&times;26г 52г Промо<br />\n" +
+              "Шок.Батончик Snickers<sup class=\"reg\">&reg;</sup>/Сникерс Арахисовый Крем 73г<br>Полные правила Акции доступны на&nbsp;сайте <a class='link' href='www.promo.korkunov.ru/dixy' target='_blank'>www.promo.korkunov.ru/dixy</a>",
           isActive: false,
         },
         {

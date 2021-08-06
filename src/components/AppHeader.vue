@@ -78,6 +78,7 @@
               :key="i + 1"
               class="header__nav-retail-item"
               :to="{ name: item.path }"
+              @click.native="showBurger()"
             >
               <img
                 class="header__nav-retail-img"
@@ -143,7 +144,7 @@ export default {
           path: "Megamart",
           logo: "megamart",
         },
-       
+
       ],
     };
   },
