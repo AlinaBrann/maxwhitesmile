@@ -45,7 +45,7 @@
           <a href="#" @click.prevent="deleteProfile()" class="account__delete _outside-prizes" v-if="!prizes">Удалить учетную запись</a>
         </div>
         <div class="account__header" v-if="!prizes">
-          <h2 class="account__header-title">У вас пока нет призов</h2>
+          <h2 class="account__header-title-mt">У вас пока нет призов</h2>
         </div>
       </div>
     </div>
@@ -162,6 +162,16 @@ export default {
     text-transform: uppercase;
     color: $red_font;
     z-index: -1;
+
+    &-mt {
+      font-family: "Bold";
+      font-size: rem(24px);
+      text-align: center;
+      text-transform: uppercase;
+      color: $red_font;
+      z-index: -1;
+      margin-top: rem(35px);
+    }
   }
   &__back-to-home {
     display: flex;

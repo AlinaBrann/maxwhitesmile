@@ -77,14 +77,14 @@
         <div class="authorization__social">
           <div class="authorization__social-list">
             <a
-              href="https://preprod-promo.korkunov.ru/backend/site/eauth?service=vkontakte"
+              href="https://promo.korkunov.ru/backend/site/eauth?service=vkontakte"
               class="authorization__social-item authorization__social-item--vk"
               target="_blank"
             >
               <img src="../../assets/images/vk.svg" alt="" />
             </a>
             <a
-              href="https://preprod-promo.korkunov.ru/backend/site/eauth?service=facebook"
+              href="https://promo.korkunov.ru/backend/site/eauth?service=facebook"
               class="authorization__social-item authorization__social-item--fb"
               target="_blank"
             >

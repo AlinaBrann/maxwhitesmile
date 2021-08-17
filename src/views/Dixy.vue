@@ -180,7 +180,7 @@ export default {
               "Шок.Батончик Snickers<sup class=\"reg\">&reg;</sup> Super 80г<br />\n" +
               "Шок.БатончикMilky Way<sup class=\"reg\">&reg;</sup> 26г<br />\n" +
               "Шок.БатончикMilky Way<sup class=\"reg\">&reg;</sup>/Милки Вей 2&times;26г 52г Промо<br />\n" +
-              "Шок.Батончик Snickers<sup class=\"reg\">&reg;</sup>/Сникерс Арахисовый Крем 73г<br>Полные правила Акции доступны на&nbsp;сайте <a class='link' href='www.promo.korkunov.ru/dixy' target='_blank'>www.promo.korkunov.ru/dixy</a>",
+              "Шок.Батончик Snickers<sup class=\"reg\">&reg;</sup>/Сникерс Арахисовый Крем 73г<br>Полные правила Акции доступны на&nbsp;сайте www.promo.korkunov.ru/dixy",
           isActive: false,
         },
         {
@@ -255,7 +255,7 @@ export default {
         },
         {
           title: "Где я&nbsp;могу узнать подробные правила Акции?",
-          text: "Полные правила Акции доступны на&nbsp;Сайте <a class='link' href='www.promo.korkunov.ru/dixy' terget='_blank'>www.promo.korkunov.ru/dixy</a> в&nbsp;разделе &laquo;Правила&raquo;.",
+          text: "Полные правила Акции доступны на&nbsp;Сайте www.promo.korkunov.ru/dixy в&nbsp;разделе &laquo;Правила&raquo;.",
           isActive: false,
         },
         {
