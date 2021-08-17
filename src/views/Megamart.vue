@@ -8,10 +8,10 @@
         </div>
         <div class="hero__col">
           <img
-            src="../assets/images/hero/hero-2.png"
+            src="../assets/images/hero/hero-3.png"
             srcset="
-              ../assets/images/hero/hero-2.png,
-              ../assets/images/hero/hero-2@2x.png 2x
+              ../assets/images/hero/hero-3.png,
+              ../assets/images/hero/hero-3@2x.png 2x
             "
             alt=""
           />

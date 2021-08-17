@@ -6,7 +6,7 @@ import { isPortrait, isMobile, getOffset } from "../utils/device";
 
 Vue.use(VueRouter);
 
-const titlePrefix = "Выигрывай призы! — ";
+const titlePrefix = "Поздравьте каждого, кто научил важному — ";
 
 const routes = [
   {

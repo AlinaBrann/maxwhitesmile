@@ -39,7 +39,7 @@ export default {
     max-width: rem(1300px);
     height: 100vh;
     padding-top: rem(95px);
-    padding-bottom: rem(40px);
+    padding-bottom: rem(68px);
   }
   &__content {
     display: flex;
@@ -94,7 +94,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: rem(13px) 0;
+      padding: rem(23px) 0;
       width: rem(70px);
       background: #fff;
       border-bottom: 3px solid #d7377b;

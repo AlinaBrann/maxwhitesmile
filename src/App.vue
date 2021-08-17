@@ -119,10 +119,13 @@ export default {
     this.checkAuth(t);
   },
   watch: {
-    $route(to, from) {
-      document.title = to.meta.title || "";
-      this.network = to.meta.network;
-    },
+
+    '$route':{
+        handler: (to, from) => {
+          document.title = to.meta.title || ''
+        },
+         immediate: true
+      }
   },
 };
 </script>

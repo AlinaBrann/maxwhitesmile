@@ -101,7 +101,7 @@ export default {
     &-nav {
       &__img {
         max-width: 70%;
-        max-height: rem(11px);
+        max-height: rem(12px);
         @media (min-width: $sm) {
           max-height: rem(34px);
         }
