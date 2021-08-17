@@ -17,7 +17,7 @@
         </div>
         <div class="footer__col">
           <div class="footer__nav">
-            <a href="#" class="footer__nav-link"> Доступность </a>
+            <a href="https://www.mars.com/accessibility-russian" class="footer__nav-link"> Доступность </a>
             <a href="https://www.mars.com/cookies-russia" target="_blank" class="footer__nav-link"> Файлы Cookies </a>
             <a href="https://www.mars.com/" target="_blank" class="footer__nav-link"> Владелец сайта </a>
             <a href="" @click.prevent="toFeedback()" class="footer__nav-link">

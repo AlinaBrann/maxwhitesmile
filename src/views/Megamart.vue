@@ -63,7 +63,7 @@ export default {
         {
           img: "steps_2.svg",
           title: "ПОКУПАЙТЕ",
-          text: "продукцию <a href='#production'>Mars*</a> на&nbsp;сумму не&nbsp;менее 150 рублей в&nbsp;чеке с&nbsp;<a class='link' href=''>Картой Друзей Дикси</a>",
+          text: "продукцию <a href='#production'>Mars*</a> на&nbsp;сумму не&nbsp;менее 150 рублей в&nbsp;чеке",
         },
         {
           img: "steps_4.svg",
@@ -84,7 +84,7 @@ export default {
           text: "Сертификат в&nbsp;МЕГАМАРТ номиналом <span class='_accent'>500 рублей</span>",
         },
         {
-          blockTitle: "Еженедельный",
+          blockTitle: "Еженедельные",
           img: "yandex.png",
           img2x: require("../assets/images/prizes/yandex@2x.png"),
           text: "Подписка <span class='_accent'>&laquo;Яндекс Плюс&raquo;</span> на&nbsp;30&nbsp;дней",
@@ -287,9 +287,9 @@ export default {
         modalTrigger.addEventListener('click', function(e) {
           e.preventDefault();
           $this.$modal.show("check_requirements");
-        
+
         });
-                
+
       } else {
         this.$modal.show("authorization");
       }

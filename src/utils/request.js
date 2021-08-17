@@ -7,7 +7,7 @@ Vue.use(VueNoty);
 
 const store = require("../store");
 
-const BASE_API = "https://preprod-promo.korkunov.ru/backend/api/";
+const BASE_API = "https://promo.korkunov.ru/backend/api/";
 
 console.log(BASE_API);
 
