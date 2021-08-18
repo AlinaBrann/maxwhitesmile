@@ -38,7 +38,7 @@
     </Steps>
     <PrizesBlock title="ПРИЗЫ" styleType="pink" :prizes="prizesWeekly" />
     <PrizesBlock title="ГЛАВНЫЕ ПРИЗЫ" :prizes="prizesMain" />
-    <Winners />
+    <!-- <Winners /> -->
     <Faq :items="faqItems" />
     <Production :items="productionItems" :text="productionText" />
   </div>
@@ -50,7 +50,7 @@ import Steps from "@/components/AppSteps.vue";
 import PrizesBlock from "@/components/AppPrizes.vue";
 import Faq from "@/components/AppFaq.vue";
 import Production from "@/components/AppProduction.vue";
-import Winners from "@/components/AppWinners.vue";
+// import Winners from "@/components/AppWinners.vue";
 
 export default {
   data: function () {
@@ -303,7 +303,7 @@ export default {
     PrizesBlock,
     Faq,
     Production,
-    Winners,
+    // Winners,
   },
 };
 </script>

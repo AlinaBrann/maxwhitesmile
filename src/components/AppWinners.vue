@@ -150,7 +150,7 @@ export default {
   data: function () {
     return {
       baseUrl:
-        "https://xn--b1afical0aetdhef6a3b1c.xn--p1ai/backend/api/getWinners",
+        "https://promo.korkunov.ru/backend/api/getWinners",
       page: 1,
       perPage: 1,
       pages: [],
@@ -160,8 +160,6 @@ export default {
         date: null,
       },
 
-      winnersCards: [],
-      winnersMoney: [],
       winners: [
         {
           page: 1,
@@ -289,15 +287,15 @@ export default {
   },
   methods: {
     getwinners() {
-      // axios
-      //   .get(this.baseUrl)
-      //   .then((response) => {
-      //     this.winners = response.data;
-      //     console.log(this.winners);
-      //   })
-      //   .catch((response) => {
-      //     console.log(response);
-      //   });
+      axios
+        .get(this.baseUrl)
+        .then((response) => {
+          this.winners = response.data;
+          console.log(this.winners);
+        })
+        .catch((error) => {
+          console.log('error ' + error);
+        });
       return this.winners;
     },
     setPages() {
@@ -315,7 +313,7 @@ export default {
     },
     searchForm() {
       let post_url =
-        "https://xn--b1afical0aetdhef6a3b1c.xn--p1ai/backend/api/searchWinner";
+        "https://promo.korkunov.ru/backend/api/searchWinner";
       let request_method = "post";
       let form_data = $(this).serialize();
       console.log(form_data);
