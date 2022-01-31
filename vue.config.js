@@ -1,5 +1,5 @@
-const ImageminPlugin = require('imagemin-webpack-plugin').default
-const ImageminMozjpeg = require('imagemin-mozjpeg')
+const ImageminPlugin = require("imagemin-webpack-plugin").default;
+const ImageminMozjpeg = require("imagemin-mozjpeg");
 module.exports = {
   publicPath: process.env.NODE_ENV === "production" ? "/" : "/",
   css: {
@@ -13,21 +13,20 @@ module.exports = {
     },
   },
   configureWebpack: {
-    devtool: 'source-map',
+    devtool: "source-map",
     plugins: [
       new ImageminPlugin({
-        disable: process.env.NODE_ENV !== 'production',
+        disable: process.env.NODE_ENV !== "production",
         pngquant: {
-          quality: '90-95'
+          quality: "90-95",
         },
         plugins: [
           ImageminMozjpeg({
             quality: 85,
-            progressive: true
-          })
-        ]
-      })
-
-    ]
-  }
+            progressive: true,
+          }),
+        ],
+      }),
+    ],
+  },
 };

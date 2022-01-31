@@ -1,27 +1,47 @@
 .btn {
+    position: relative;
     display: inline-block;
-    min-width: rem(254px);
+    height: rem(32px);
     max-width: 100%;
     cursor: pointer;
     text-align: center;
     font-family: "Light";
-    font-size: rem(18px);
-    padding: rem(16px) rem(25px) rem(16px);
+    font-size: rem(20px);
+    padding: 0 rem(15px);
+    font-weight: 600;
     line-height: 1;
+    padding-bottom: rem(3px);
+    border-radius: rem(7px);
+    white-space: nowrap;
     transition: all 0.3s ease-in-out;
     box-sizing: border-box;
     &:focus {
         outline: none;
     }
+    @media (min-width: $sm) {
+        height: rem(42px);
+        font-size: rem(29px);
+    }
+    img {
+		display: none;
+		position: absolute;
+		width: 2.5rem;
+		right: 0;
+		top: 50%;
+		transform: translate(0, -50%);
+	}
     &.loading {
         pointer-events: none;
         opacity: 0.8;
+        img {
+            display: block;
+        }
     }
     &--primary {
-        color: #000;
-        background: $yellow;
+        color: #FFF;
+        background: $red;
         
-        border: 2px solid $yellow;
+        border: rem(3px) solid $red;
         // min-width: 145px;
     }
 
@@ -30,13 +50,12 @@
     // }
 
     &--primary:hover {
-        background: transparent;
+        background: #c11216;
+        border-color: #c11216;
     }
 
     &--lg {
-        font-size: 21px;
-        padding: 17px 44px 16px;
-        border-width: 3px;
+        padding: 0 rem(35px);
     }
 
     &--secondary  {
@@ -90,15 +109,19 @@
         color: #FFF;
         background-color: transparent;
     }
-
+    &--bordered {
+        border: rem(3px) solid $red;
+        color: $red;
+        &:hover {
+            background: $red;
+            color: #FFF;
+        }
+    }
     &--sm {
         padding: 7px 23px 6px;
     }
 
     @media (max-width: 1023px) {
-        &--lg {
-            font-size: 18px;
-            padding: 16px 25px 10px;
-        }
+
     }
 }

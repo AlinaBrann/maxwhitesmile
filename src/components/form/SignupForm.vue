@@ -1,22 +1,21 @@
 <template>
   <div class="signup">
-    <div class="signup__row">
-      <div class="signup__col">
         <inputText
-          label="Фамилия"
-          placeholder="Ваша фамилия"
-          :field="lastname"
+          label="E-mail"
+          placeholder="Ваш E-mail"
+          :field="email"
+          type="email"
           :class="{
-            error: validationStatus($v.lastname) || this.errorMessage.lastname,
+            error: validationStatus($v.email) || this.errorMessage.email,
           }"
           :error="
-            (!$v.lastname.required && $v.lastname.$error
+            (!$v.email.required && $v.email.$error
               ? 'Обязательное поле'
-              : !$v.lastname.rus && $v.lastname.$error
-              ? 'Введите текст на русском языке'
-              : '') || this.errorMessage.lastname
+              : !$v.email.email && $v.email.$error
+              ? 'Некорректный e-mail'
+              : '') || this.errorMessage.email
           "
-          @input="lastname = $event"
+          @input="email = $event"
         />
         <inputText
           label="Имя"
@@ -34,36 +33,6 @@
           "
           errorType
           @input="name = $event"
-        />
-        <div class="form__field form__field--white">
-          <div class="form__caption">Город</div>
-          <vue-dadata 
-            placeholder="Начните вводить"
-            token="e3468f8470bd9bff626cc9a80dfc9cceb5d01020" 
-            fromBound="city" 
-            :onChange="selectSuggestion"
-            toBound="city">
-          </vue-dadata>
-        </div>
-      </div>
-      
-      <div class="signup__col">
-        <inputText
-          label="E-mail"
-          placeholder="Ваш E-mail"
-          :field="email"
-          type="email"
-          :class="{
-            error: validationStatus($v.email) || this.errorMessage.email,
-          }"
-          :error="
-            (!$v.email.required && $v.email.$error
-              ? 'Обязательное поле'
-              : !$v.email.email && $v.email.$error
-              ? 'Некорректный e-mail'
-              : '') || this.errorMessage.email
-          "
-          @input="email = $event"
         />
         <inputText
           label="Номер телефона"
@@ -83,9 +52,27 @@
           type="tel"
           :mask="'+7(###) ###-##-##'"
         />
-      </div>
-    </div>
-
+        <div class="form__field form__field--white"
+        :class="{
+            error: validationStatus($v.city) || this.errorMessage.city,
+          }">
+          <div class="form__caption">Город</div>
+          <vue-dadata
+            placeholder="Начните вводить"
+            token="e3468f8470bd9bff626cc9a80dfc9cceb5d01020"
+            fromBound="city"
+            :onChange="selectSuggestion"
+            toBound="city"
+          >
+          </vue-dadata>
+          <div 
+            class="error-hint" 
+            v-if="validationStatus($v.city) || this.errorMessage.city"
+            v-html="(!$v.city.required && $v.city.$error ? 'Обязательное поле' : '') || this.errorMessage.city"
+            >
+            </div>
+        </div>
+      
     <div class="signup__checkbox_list">
       <checkBox
         label="Я&nbsp;ознакомился с&nbsp;<a href='' target='_blank'>Положением о&nbsp;конфиденциальности</a>, <a href='' target='_blank'>Правилами Акции</a> и&nbsp;даю свое согласие на&nbsp;обработку персональных данных."
@@ -118,16 +105,12 @@
     <div class="signup__footer">
       <button
         type="button"
-        class="btn btn--primary"
+        class="btn btn--primary btn--lg"
         @click="submit()"
         :class="{ loading: submitStatus == 'PENDING' }"
       >
-        Зарегистрироваться<img src="../../assets/img/spinner.svg" alt="" />
+        Загрузить чек <img src="../../assets/img/spinner.svg" alt="" />
       </button>
-      <div class="modal__another-option">
-        <p>Есть учетная запись?</p>
-        <a href="#" @click="showLogInModal()">Войти</a>
-      </div>
     </div>
   </div>
 </template>
@@ -135,7 +118,7 @@
 <script>
 import inputText from "@/components/form/inputText.vue";
 import checkBox from "@/components/form/checkBox.vue";
-import VueDadata from 'vue-dadata';
+import VueDadata from "vue-dadata";
 import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
 const rus = (value) => /^[А-ЯЁа-яё ]+$/.test(value);
 
@@ -148,9 +131,8 @@ export default {
 
       email: null,
       name: null,
-      lastname: null,
       phone: null,
-      city: '',
+      city: "",
 
       checkbox: false,
       checkbox2: false,
@@ -159,7 +141,6 @@ export default {
       errorMessage: {
         email: null,
         name: null,
-        lastname: null,
         phone: null,
         city: null,
       },
@@ -172,7 +153,6 @@ export default {
     phone: { minLength: minLength(11) },
     email: { required, email },
     name: { required, rus },
-    lastname: { required, rus },
     city: { required },
     checkbox: {
       required,
@@ -190,7 +170,7 @@ export default {
 
   methods: {
     selectSuggestion(suggestion) {
-      this.city = suggestion.data.city
+      this.city = suggestion.data.city;
     },
     errorReset() {
       this.$v.$reset();
@@ -198,7 +178,6 @@ export default {
       this.errorMessage = {
         email: null,
         name: null,
-        lastname: null,
         phone: null,
         city: null,
       };
@@ -217,11 +196,10 @@ export default {
         const formData = {
           login: this.email,
           name: this.name,
-          surname: this.lastname,
           phone: this.phone,
           city: this.city,
-          network: 1,
-          personal_data_processing_agreement: 1,
+          rules1: 1,
+          rules2: 1,
         };
         this.$store
           .dispatch("SignUp", formData)
@@ -251,11 +229,6 @@ export default {
                 fieldsError = true;
               }
 
-              if (r.message && r.message.surname) {
-                [this.errorMessage.lastname] = r.message.surname;
-                fieldsError = true;
-              }
-
               if (r.message && r.message.city) {
                 [this.errorMessage.city] = r.message.city;
                 fieldsError = true;
@@ -268,7 +241,8 @@ export default {
               }
             } else {
               this.$modal.hide("signup");
-              this.$modal.show("success_signup");
+              localStorage.setItem('uuid', r.auth_key);
+              this.$root.$emit("initApm");
             }
           })
           .catch((e) => {
@@ -286,8 +260,7 @@ export default {
   components: {
     inputText,
     checkBox,
-    'vue-dadata': VueDadata
-    
+    "vue-dadata": VueDadata,
   },
 };
 </script>
@@ -314,29 +287,9 @@ export default {
     }
   }
 }
-
 </style>
 <style lang="scss">
-.vue-dadata__input {
-  width: rem(270px);
-  max-width: 100%;
-  height: rem(54px);
-  appearance: none;
-  font-size: rem(14px);
-  background: #ffffff;
-  border: 1px solid #a4a4a4 !important;
-  border-radius: 0px !important;
-  /*text-transform: uppercase;*/
-  padding: 0 rem(15px) 0 !important;
-  transition: all 0.3s ease-in-out;
-  color: #1a1511;
 
-  &:focus {
-    outline: none;
-    border-color: $red_font !important;
-    box-shadow: none !important;
-  }
-}
 .vue-dadata__suggestions {
   box-shadow: 0 2px 6px #e2e1e1;
   mark {

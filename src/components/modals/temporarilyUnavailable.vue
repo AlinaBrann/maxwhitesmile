@@ -1,14 +1,12 @@
 <template>
   <Modal
     name="temporarily_unavailable"
-    title="Внимание"
+    title="Приём заявок завершен!"
     @closeModal="closeModal"
   >
     <template v-slot:content>
       <div class="success_modal">
-        <div class="modal__subtitle">
-          Регистрация чеков на сайте временно недоступна.
-        </div>
+        <div class="modal__subtitle">Благодарим за Участие в Акции</div>
       </div>
     </template>
   </Modal>

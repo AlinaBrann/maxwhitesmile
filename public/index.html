@@ -7,11 +7,19 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title></title>
 
-    <meta property="og:title" content="Не упусти шанс выиграть «космические» призы!" />
+    <meta property="og:title" content="Максимум твоей улыбки" />
     <meta property="og:image" content="<%= BASE_URL %>share.jpeg">
     <meta property="og:url" content="<%= BASE_URL %>">
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43489348-73"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
+      gtag('config', 'UA-43489348-73');
+    </script>
    
   </head>
   <body>
@@ -21,8 +29,8 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
 
-<link href="https://qr.apmcheck.ru/css/widget.min.css" rel="stylesheet" integrity="sha384-il2NvYxuayCXhDYumhxdf+COSQbSdxFJtlcugdNOVuX2YXUaduWuzZ2EKNhcEQc8" crossorigin="anonymous"/>
-<script src="https://qr.apmcheck.ru/js/widget.min.js" integrity="sha384-InTL4F8tzu6ilDJbt45+8TpkoNlEabbqaYN3ZPLoffm71ziCiWo3TogBWroofWsj" crossorigin="anonymous"></script>
+<link href="https://qr.apmcheck.ru/css/widget.min.css" rel="stylesheet"  crossorigin="anonymous"/>
+<script src="https://qr.apmcheck.ru/js/widget.min.js"  crossorigin="anonymous"></script>
 
   </body>
 </html>

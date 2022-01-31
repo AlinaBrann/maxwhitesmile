@@ -76,7 +76,7 @@ export default {
           .then((r) => {
             if (r.error !== 0) {
               this.submitStatus = null;
-              
+
               let fieldsError = null;
 
               if (r.message && r.message.email) {

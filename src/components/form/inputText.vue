@@ -1,13 +1,6 @@
 <template>
   <label
     class="form__field"
-    :class="
-      color === 'white'
-        ? 'form__field--white'
-        : '' || color === 'blue'
-        ? 'form__field--blue'
-        : ''
-    "
   >
     <div class="form__caption" v-if="label">{{ label }}</div>
     <input
@@ -39,11 +32,7 @@
       @input="onInput()"
       @blur="onBlur()"
     />
-
     <div class="error-hint" v-if="error">{{ error }}</div>
-    <!-- <div class="error-hint" v-if="!$v.field.minLength">List must have at least {{ $v.name.$params.minLength.min }} elements.</div>
-    <div class="error-hint" v-else-if="!$v.field.required">List must not be empty.</div>
-    <div class="error-hint" v-else-if="$v.field.$error">List is invalid.</div> -->
   </label>
 </template>
 <script>
@@ -113,35 +102,5 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.form__field--white {
-  margin-bottom: 24px;
-}
-.form__field--blue {
-  margin-bottom: 24px;
 
-  .form__field-input {
-    border-color: #d6edf2;
-    background-color: #d6edf2;
-  }
-}
-
-.form__field-input {
-  width: rem(270px);
-  max-width: 100%;
-  height: rem(54px);
-  appearance: none;
-  font-size: rem(14px);
-  background: #ffffff;
-  border: 1px solid #a4a4a4;
-  border-radius: 0px;
-  /*text-transform: uppercase;*/
-  padding: 0 rem(15px) 0;
-  transition: all 0.3s ease-in-out;
-  color: #1a1511;
-
-  &:focus {
-    outline: none;
-    border-color: $red_font;
-  }
-}
 </style>

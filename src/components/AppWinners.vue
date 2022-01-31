@@ -14,15 +14,43 @@
       <div class="winners__header">
         <h2 class="winners__title section__title"><span>Победители</span></h2>
         <div class="winners__search">
-          <form class="winners__search-form" v-on:submit.prevent="searchForm">
+          <form
+            class="winners__search-form"
+            v-on:submit.prevent="searchForm"
+            :class="{
+              error:
+                validationStatus($v.searchQuery) ||
+                this.errorMessage.searchQuery,
+            }"
+          >
             <input
               class="winners__search-field"
               type="text"
               name="term"
               v-model="searchQuery"
+              @focus="errorReset()"
               placeholder="Email "
             />
             <button type="submit" class="winners__search-button"></button>
+            <div
+              v-if="searchQuery"
+              @click="formReset()"
+              class="winners__search-clear"
+            ></div>
+            <div
+              class="error-hint"
+              v-if="
+                validationStatus($v.searchQuery) ||
+                this.errorMessage.searchQuery
+              "
+              v-html="
+                (!$v.searchQuery.required && $v.searchQuery.$error
+                  ? 'Обязательное поле'
+                  : !$v.searchQuery.email && $v.searchQuery.$error
+                  ? 'Некорректный e-mail'
+                  : '') || this.errorMessage.searchQuery
+              "
+            ></div>
           </form>
         </div>
       </div>
@@ -30,13 +58,12 @@
       <Table
         :thead="['E-mail', 'Дата', 'Приз']"
         class="winners-tab-desktop"
-        v-for="(table, index) in displayedWinners"
-        :key="index"
+        v-if="winners"
       >
         <template v-slot:tbody>
-          <tr v-for="(item, index) in table.result" :key="index">
+          <tr v-for="(item, index) in winners" :key="index">
             <td>
-              {{ item.mail }}
+              {{ item.email }}
             </td>
 
             <td>
@@ -48,12 +75,13 @@
           </tr>
         </template>
       </Table>
+      <div class="no-results" v-if="noResults">Ничего не найдено</div>
       <table class="winners-tab-mobile">
-        <tr v-for="(table, index) in displayedWinners" :key="index">
+        <tr v-for="(table, index) in winners" :key="index">
           <td>
             <table
               class="winners-tab-mobile__inner"
-              v-for="(item, index) in table.result"
+              v-for="(item, index) in table"
               :key="index"
             >
               <tr>
@@ -79,11 +107,11 @@
         </tr>
       </table>
 
-      <ul class="winners__pagination">
+      <ul class="winners__pagination" v-if="pages.length > 1">
         <li
           class="winners__pagination-item"
           v-if="page != 1"
-          @click="page--"
+          @click="page--, paginate()"
         >
           <svg
             width="15"
@@ -100,9 +128,9 @@
         </li>
         <li
           class="winners__pagination-item"
-          v-for="pageNumber in pages"
+          v-for="pageNumber in pages.length"
           :key="pageNumber"
-          @click="page = pageNumber"
+          @click="(page = pageNumber), paginate()"
           :class="{
             current: page === pageNumber,
             last: pageNumber == pages.length && Math.abs(pageNumber - page) > 3,
@@ -116,8 +144,7 @@
           {{ pageNumber }}
         </li>
         <li
-          
-          @click="page++"
+          @click="page++, paginate()"
           v-if="page < pages.length"
           class="winners__pagination-item"
         >
@@ -141,206 +168,99 @@
 
 <script>
 import Table from "@/components/Table.vue";
-import axios from "axios";
 import $ from "jquery";
+import { required, email } from "vuelidate/lib/validators";
+
 export default {
   components: {
     Table,
   },
   data: function () {
     return {
-      baseUrl:
-        "https://promo.korkunov.ru/backend/api/getWinners",
       page: 1,
       perPage: 1,
       pages: [],
       searchQuery: null,
       date: null,
+      total: 0,
+      noResults: false,
       errorMessage: {
         date: null,
+        searchQuery: null,
       },
 
-      winners: [
-        {
-          page: 1,
-          result: [
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-          ],
-        },
-        {
-          page: 2,
-          result: [
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com2",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-          ],
-        },
-        {
-          page: 3,
-          result: [
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com2",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-          ],
-        },
-        {
-          page: 3,
-          result: [
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com2",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-          ],
-        },
-        {
-          page: 3,
-          result: [
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com2",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-          ],
-        },
-        {
-          page: 3,
-          result: [
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com2",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-            {
-              mail: "ibragimxxxxxxxxx@gmail.com",
-              date: "03.08.2021",
-              prize: "Универсальный сертификат Giftery на 15 000 рублей",
-            },
-          ],
-        },
-      ],
-      activeItem: "cards",
+      winners: [],
     };
   },
+  validations: {
+    searchQuery: { required, email },
+  },
   methods: {
-    getwinners() {
-      axios
-        .get(this.baseUrl)
-        .then((response) => {
-          this.winners = response.data;
-          console.log(this.winners);
-        })
-        .catch((error) => {
-          console.log('error ' + error);
-        });
-      return this.winners;
+    errorReset() {
+      this.$v.$reset();
+
+      this.errorMessage = {
+        searchQuery: null,
+      };
     },
-    setPages() {
-      let numberOfPages = Math.ceil(this.winners.length / this.perPage);
-      for (let index = 1; index <= numberOfPages; index++) {
-        this.pages.push(index);
+    validationStatus: function (validation) {
+      return typeof validation != "undefined" ? validation.$error : false;
+    },
+    setPages(total) {
+      this.pages = [];
+      if (total) {
+        for (let index = 1; index <= total.length; index++) {
+          this.pages.push(index);
+        }
       }
     },
-    paginate(winners) {
+    paginate() {
       let page = this.page;
-      let perPage = this.perPage;
-      let from = page * perPage - perPage;
-      let to = page * perPage;
-      return winners.slice(from, to);
+      this.$store.dispatch("GetWinners", { page: page }).then((response) => {
+        this.winners = response.result;
+      });
     },
     searchForm() {
-      let post_url =
-        "https://promo.korkunov.ru/backend/api/searchWinner";
-      let request_method = "post";
-      let form_data = $(this).serialize();
-      console.log(form_data);
-      $.ajax({
-        url: post_url,
-        type: request_method,
-        data: { term: this.searchQuery },
-      }).done(function (response) {
-        this.winnersCards = response;
-        console.log(response);
-      });
+      this.$v.$touch();
+      if (this.$v.$pendding || this.$v.$error) return;
+      this.page = 1;
+      this.$store
+        .dispatch("SearchWinners", { term: this.searchQuery })
+        .then((response) => {
+          this.winners = response.result;
+          if (!this.winners) {
+            this.noResults = true;
+          } else {
+            this.noResults = false;
+          }
+        });
+    },
+    formReset() {
+      this.$v.$reset();
+      this.searchQuery = null;
+      this.$store
+        .dispatch("GetWinners", { page: this.page })
+        .then((response) => {
+          this.winners = response.result;
+        });
     },
   },
   mounted() {},
   created() {
-    this.getwinners();
-    this.setPages();
+    this.$store.dispatch("GetWinners").then((response) => {
+      this.total = response.paging.total;
+      this.winners = response.result;
+    });
   },
   watch: {
     winners() {
-      this.setPages();
+      this.setPages(this.winners);
     },
   },
   computed: {
-    displayedWinners() {
-      return this.paginate(this.winners);
-    },
+    // displayedWinners() {
+    //   return this.paginate(this.winners);
+    // },
   },
 };
 </script>
@@ -352,10 +272,10 @@ export default {
   padding: rem(70px) 0;
   align-items: center;
   z-index: 1;
-  background: url('../assets/images/background.jpg') no-repeat center;
+  background: url("../assets/images/background.jpg") no-repeat center;
   background-size: cover;
   overflow: hidden;
-  
+
   &__background {
     position: absolute;
     display: none;
@@ -401,6 +321,16 @@ export default {
     height: rem(21px);
     background: url("../assets/images/search.svg") no-repeat center;
     background-size: contain;
+  }
+  &__search-clear {
+    position: absolute;
+    top: 0;
+    right: rem(14px);
+    width: rem(18px);
+    height: 100%;
+    background: url("../assets/images/error.svg") no-repeat center;
+    background-size: 100%;
+    cursor: pointer;
   }
   &__pagination {
     display: flex;
@@ -491,6 +421,10 @@ export default {
         }
       }
     }
+  }
+  .no-results {
+    text-align: center;
+    color: #fff;
   }
   @media (min-width: $sm) {
     &-tab-desktop {

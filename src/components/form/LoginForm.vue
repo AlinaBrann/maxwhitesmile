@@ -74,7 +74,7 @@
           <p>Нет учётной записи?</p>
           <a href="#" @click="showSignUpModal()">Зарегистрироваться</a>
         </div>
-        <div class="authorization__social">
+        <!-- <div class="authorization__social">
           <div class="authorization__social-list">
             <a
               href="https://promo.korkunov.ru/backend/site/eauth?service=vkontakte"
@@ -95,7 +95,7 @@
             Вход через социальные сети. Доступ&nbsp;только после регистрации
             в&nbsp;личном кабинете.
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </form>
@@ -210,7 +210,6 @@ export default {
                 } else {
                   this.$root.$emit("onLogined");
                   this.$modal.hide("authorization");
-                  this.$router.push("/account");
                 }
               });
             }
@@ -248,8 +247,8 @@ export default {
   }
 
   &__signin {
-    max-width: rem(270px);
-    margin: auto;
+    width: 100%;
+    margin: 0 auto;
     &-fields {
       display: flex;
       flex-direction: column;
@@ -265,10 +264,9 @@ export default {
       min-width: rem(200px);
     }
     .forget-link {
-      margin-top: rem(-10px);
-      margin-bottom: rem(20px);
+      margin-bottom: rem(40px);
       font-size: rem(14px);
-      color: $red_font;
+      color: $red;
       text-decoration-line: underline;
       text-transform: none;
       align-self: flex-end;
@@ -304,6 +302,11 @@ export default {
   }
 
   @media (min-width: $md) {
+    &__signin {
+      .forget-link {
+        margin-top: rem(-30px);
+      }
+    }
   }
 }
 </style>

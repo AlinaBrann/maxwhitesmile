@@ -13,20 +13,18 @@ export default {
   },
 
   methods: {},
-  created() {
-    
-  },
+  created() {},
   mounted() {
     this.ready = true;
 
     const t = this;
-    
+
     //console.log("apm");
 
     const widgetParams = {
       api: "https://api.apmcheck.ru",
-      apiKey: "ee0fed8c-f363-402a-a887-298ed00076c2",
-      userUuid: this.$store.getters.user.profile.userUuid,
+      apiKey: "76bb9ca6-80af-45eb-9630-7acbe6c002b7",
+      userUuid: localStorage.getItem('uuid'),
       callbacks: {
         onReceiptSentSuccess: function () {
           t.$root.$emit("onCheckSended");
@@ -49,7 +47,7 @@ export default {
           },
           cameraNotAvailable: {
             subheader:
-              '<span class="apm-title">загрузка чека</span><span class="amp-error">Мы не можем получить доступ к камере устройства. <br><br>Разрешите браузеру обращаться к камере или введите данные с чека вручную</span>',
+              '<span class="apm-title">загрузка чека</span><span class="amp-error">Мы не&nbsp;можем получить доступ к&nbsp;камере устройства. <br><br>Разрешите браузеру обращаться к&nbsp;камере или введите данные с&nbsp;чека вручную</span>',
           },
           qrParsed: {
             header: "Благодарим!",
@@ -85,7 +83,7 @@ export default {
 }
 #apm-modal {
   .apm-qr-video {
-    border: 1px dashed $red_font;
+    border: 1px dashed $red;
     background: url("../assets/images/camera.svg") no-repeat center;
     background-size: 20%;
   }
@@ -97,14 +95,14 @@ export default {
   }
   .apm-modal-content {
     position: relative;
-    border-radius: 0;
+    border-radius: rem(7px);
     border: 0;
     background-color: #fff;
-    padding: rem(65px) rem(25px);
+    padding: rem(40px) rem(45px) rem(46px);
   }
   .apm-modal-body {
-    width: rem(270px);
     max-width: 100%;
+    width: rem(320px);
     margin: auto;
     padding: 0;
   }
@@ -113,22 +111,30 @@ export default {
   }
   .apm-title {
     display: block;
-    margin-bottom: rem(30px);
-    color: $red_font;
+    margin-bottom: rem(60px);
+    color: $red;
     text-transform: uppercase;
-    font-size: rem(28px);
+    font-size: rem(35px);
     font-family: "Bold";
     line-height: 1.2;
     text-align: center;
+    & + .apm-description-title {
+      margin-top: rem(-40px);
+      margin-bottom: rem(30px);
+      .apm-p {
+        font-size: rem(18px);
+        font-family: "Reg";
+      }
+    }
   }
   .amp-error {
     display: block;
-    max-width: rem(256px);
+    max-width: rem(320px);
     margin: auto;
     padding: rem(19px) rem(22px) rem(25px);
     color: rgba(#000, 0.6);
-    font-size: rem(10px);
-    line-height: rem(12px);
+    font-size: rem(16px);
+    line-height: 1.3;
     background: rgba(#a4a4a4, 0.1);
     &::before {
       content: "";
@@ -140,9 +146,7 @@ export default {
       background-size: contain;
     }
   }
-  .apm-p-input {
-    color: #a4a4a4;
-  }
+
   #apm-submit-qr {
     margin-top: 36px;
   }
@@ -157,7 +161,7 @@ export default {
     align-items: center;
     height: 180px;
     background: #fff;
-    border: 1px dashed $red_font;
+    border: 1px dashed $red;
     box-sizing: border-box;
     border-radius: 0px;
     .btn-content {
@@ -177,6 +181,9 @@ export default {
         background-size: contain;
       }
     }
+    &:hover {
+      background-color: transparent !important;
+    }
   }
   .apm-close {
     cursor: pointer;
@@ -188,7 +195,7 @@ export default {
     max-width: none;
     max-height: none;
     background-color: transparent !important;
-    background-image: url("../assets/images/close_icon.svg");
+    background-image: url("../assets/images/icons/close_icon.svg");
     background-repeat: no-repeat;
     background-size: rem(26px);
     background-position: center;
@@ -207,7 +214,7 @@ export default {
   }
 
   .apm-photo-thumbnail-wrapper {
-    border: 2px solid $red_font;
+    border: 2px solid $red;
     &:first-of-type {
       margin-top: 40px;
     }
@@ -219,93 +226,131 @@ export default {
   .apm-block-btn {
     width: 100%;
   }
-  .apm-btn {
-    width: 100%;
+  .apm-btn,
+  .apm-action-button {
+    display: inline-block;
+    height: rem(42px);
     max-width: 100%;
-    height: rem(54px);
+    cursor: pointer;
     text-align: center;
-    background: $yellow;
-    padding: rem(14px) rem(25px) rem(16px);
+    font-family: "Light";
+    font-size: rem(29px);
+    padding: 0 rem(15px);
+    font-weight: 600;
     line-height: 1;
-    color: #000;
-    letter-spacing: normal;
-    border: 2px solid $yellow;
-    border-radius: 0px;
+    padding-bottom: rem(3px);
+    border-radius: rem(7px);
+    border: rem(3px) solid $red;
+    background: $red;
+    white-space: nowrap;
+    box-shadow: none;
     transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
 
-    .btn-content {
+    .btn-content,
+    .apm-qr-btn-text {
       font-family: "Light" !important;
-      font-size: rem(16px);
+      font-size: rem(24px);
       text-transform: none;
       letter-spacing: normal;
-      color: #000;
+      color: #FFF;
       transition: all 0.3s ease-in-out;
     }
 
     &:hover {
-      background: transparent;
+      background-color: #c11216 !important;
+      border-color: #c11216;
+    }
+    @media (max-width: $sm) {
+      width: 100%;
+      .btn-content,
+      .apm-qr-btn-text {
+        font-size: rem(18px);
+      }
     }
   }
-
+  .apm-btn-manual-input {
+    margin: 0;
+  }
+  #apm-scan-qr-dupe {
+    .apm-action-button-dupe {
+      padding-left: rem(40px);
+      background: $red url("../assets/images/qr.svg") no-repeat center left
+        rem(20px);
+    }
+  }
   .apm-p-input {
-    font-size: rem(14px);
+    font-size: rem(16px);
     padding: 0;
-    font-family: "Light" !important;
+    color: #000;
+    font-family: "Reg" !important;
   }
 
   .apm-block-qr-video {
     margin-bottom: 2.5rem;
   }
   .apm-qr-input {
-    width: rem(270px);
-    height: rem(54px);
-    margin: rem(6px) 0 rem(18px);
-    font-size: rem(14px);
-    background: #ffffff;
-    border: 1px solid #a4a4a4;
-    border-radius: 0px;
-    text-align: left;
-    padding: 0 rem(14px);
+    width: rem(340px);
+    max-width: 100%;
+    height: rem(40px);
+    margin: rem(6px) 0 rem(20px);
+    appearance: none;
+    font-size: rem(18px);
+    background: none;
+    border: 1px solid #595655;
+    border-radius: rem(7px);
+    /*text-transform: uppercase;*/
+    padding: 0 rem(15px) 0;
+    font-family: "Reg";
     transition: all 0.3s ease-in-out;
-    font-family: "Light" !important;
-  }
-  .apm-action-button {
-    box-shadow: none;
-    margin: 0 auto;
-    height: rem(54px);
-    text-align: center;
-    background: $yellow;
-    padding: rem(16px) rem(25px) rem(16px);
-    line-height: 1;
     color: #000;
-    border: 2px solid $yellow;
-    border-radius: 0px;
-    transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-
-    .btn-content,
-    .apm-qr-btn-text {
-      transition: all 0.3s ease-in-out;
-      color: #000;
-      font-size: rem(16px);
-      font-family: "Light";
-      letter-spacing: normal;
-      text-transform: none;
+    text-align: left;
+    &:focus {
+      outline: none;
+      border-color: $red;
+      outline: none !important;
+      box-shadow: none !important;
     }
-
-    &:hover {
+    &::placeholder {
       color: #000;
-      background-color: transparent;
-
-      .btn-content {
-        color: #000 !important;
-      }
-
-      .apm-qr-btn-text {
-        color: #000;
-      }
     }
   }
+  // .apm-action-button {
+  //   box-shadow: none;
+  //   margin: 0 auto;
+  //   height: rem(54px);
+  //   text-align: center;
+  //   background: $yellow;
+  //   padding: rem(16px) rem(25px) rem(16px);
+  //   line-height: 1;
+  //   color: #000;
+  //   border: 2px solid $yellow;
+  //   border-radius: 0px;
+  //   transition: all 0.3s ease-in-out;
+
+  //   .btn-content,
+  //   .apm-qr-btn-text {
+  //     transition: all 0.3s ease-in-out;
+  //     color: #000;
+  //     font-size: rem(16px);
+  //     font-family: "Light";
+  //     letter-spacing: normal;
+  //     text-transform: none;
+  //   }
+
+  //   &:hover {
+  //     color: #000;
+  //     background-color: transparent;
+
+  //     .btn-content {
+  //       color: #000 !important;
+  //     }
+
+  //     .apm-qr-btn-text {
+  //       color: #000;
+  //     }
+  //   }
+  // }
   .apm-p {
     padding-bottom: 1.3rem;
     color: #000;
@@ -317,20 +362,11 @@ export default {
   .apm-img-error {
     display: none;
   }
-  #apm-scan-qr-dupe {
-    .apm-action-button-dupe {
-      padding: rem(16px) rem(30px) rem(14px) rem(40px);
-      background: $yellow url("../assets/images/qr.svg") no-repeat center left
-        rem(20px);
-      &:hover {
-        background-color: transparent;
-      }
-    }
-  }
+  
   @media (min-width: $sm) {
     .apm-block-btn,
     .apm-btn {
-      width: rem(256px);
+      width: rem(320px);
     }
   }
   @media (min-width: $md) {

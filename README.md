@@ -1,4 +1,4 @@
-# Hvostiki
+# maxwhitesmile
 
 ## Project setup
 ```

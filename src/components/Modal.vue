@@ -1,6 +1,7 @@
 <template>
   <modal
     :name="name"
+    height="auto"
     :adaptive="true"
     :scrollable="true"
     @before-open="beforeOpen"
@@ -88,10 +89,11 @@ export default {
   flex-direction: column;
   justify-content: center;
   width: rem(440px);
-  min-height: 100vh;
+  // min-height: 100vh;
   max-width: 100%;
   padding: rem(65px) rem(25px) rem(45px);
-  background: #fff;
+  background: #FFF;
+  border-radius: rem(7px);
   &-check_photo {
     min-height: auto;
   }
@@ -102,7 +104,7 @@ export default {
     right: rem(6px);
     width: rem(48px);
     height: rem(48px);
-    background-image: url("../assets/images/close_icon.svg");
+    background-image: url("../assets/images/icons/close_icon.svg");
     background-repeat: no-repeat;
     background-size: rem(26px);
     background-position: center;
@@ -115,7 +117,7 @@ export default {
     line-height: rem(30px);
     font-family: "Bold";
     text-transform: uppercase;
-    color: $red_font;
+    color: $red;
     text-align: center;
     & + .modal__text {
       margin-top: rem(-7px);
@@ -123,8 +125,8 @@ export default {
   }
   &__subtitle {
     margin-bottom: rem(27px);
-    font-size: rem(16px);
-    color: $red_font;
+    font-size: rem(18px);
+    color: $red;
     font-family: "Bold";
     text-align: center;
   }
@@ -139,12 +141,12 @@ export default {
     width: rem(758px);
   }
   &__another-option {
-    margin: rem(15px) 0 rem(27px);
+    margin: rem(15px) 0 0;
     font-size: rem(14px);
     line-height: rem(17px);
     text-align: center;
     a {
-      color: $red_font;
+      color: $red;
       border-bottom: 1px solid currentColor;
       &:hover {
         border-color: transparent;
@@ -159,7 +161,7 @@ export default {
       padding-left: rem(33px);
       margin-bottom: rem(20px);
       &:before {
-        content: '';
+        content: "";
         position: absolute;
         left: 0;
         top: rem(8px);
@@ -173,18 +175,7 @@ export default {
   &-success {
     &__title {
       position: relative;
-      padding-top: rem(76px);
       margin-bottom: rem(5px) !important;
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: rem(60px);
-        height: rem(60px);
-        transform: translateX(-50%);
-        background: url("../assets/images/success.svg") no-repeat center;
-      }
     }
   }
   .success_modal {
@@ -212,16 +203,16 @@ export default {
     padding: rem(50px) rem(85px) rem(60px);
     &--md {
       width: rem(574px);
-      padding: rem(40px) rem(25px) rem(46px);
+      padding: rem(40px) rem(45px) rem(46px);
     }
     &--lg {
       width: rem(758px);
       padding: rem(40px) rem(25px) rem(46px);
     }
     &__title {
-      margin-bottom: rem(25px);
-      font-size: rem(28px);
-      line-height: rem(34px);
+      margin-bottom: rem(60px);
+      font-size: rem(35px);
+      line-height: rem(38px);
     }
     &__text {
       margin-top: rem(27px);
@@ -236,7 +227,7 @@ export default {
       margin-bottom: 0;
     }
     &-success {
-      padding: rem(80px) rem(123px);
+      padding: rem(60px) rem(123px) rem(40px);
     }
   }
 }

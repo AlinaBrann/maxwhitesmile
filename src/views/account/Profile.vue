@@ -1,22 +1,7 @@
 <template>
-  <div class="profile account">
-    <div class="account__content">
-      <div class="container">
-        <router-link
-          class="account__back-to-home visible-xs"
-          :to="{ name: 'Home' }"
-        >
-          <svg
-            width="15"
-            height="15"
-            viewBox="0 0 15 15"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M0 7.72727L15 0V15L0 7.72727Z" fill="#A1224E" />
-          </svg>
-          На главную
-        </router-link>
+  <div class="profile account page">
+    <div class="container">
+      <div class="page__content _lg">
         <div class="account__header">
           <h2 class="account__header-title">личный кабинет</h2>
         </div>
@@ -42,28 +27,25 @@
               Загруженные чеки
             </button>
           </div>
-          <a href="#" @click.prevent="deleteProfile()" class="account__delete _outside-prizes" v-if="!prizes">Удалить учетную запись</a>
+          <a
+            href="#"
+            @click.prevent="deleteProfile()"
+            class="account__delete _outside-prizes"
+            v-if="!prizes"
+            >Удалить учетную запись</a
+          >
         </div>
         <div class="account__header" v-if="!prizes">
           <h2 class="account__header-title-mt">У вас пока нет призов</h2>
         </div>
       </div>
     </div>
-
-    <PrizesBlock styleType="pink" title="Выигранные призы" v-if="prizes" :prizes="prizes">
-      <a href="#" @click.prevent="deleteProfile()" class="account__delete">Удалить учетную запись</a>
-    </PrizesBlock>
-
   </div>
 </template>
 
 <script>
-import PrizesBlock from "@/components/AppPrizes.vue";
-
 export default {
-  components: {
-    PrizesBlock,
-  },
+  components: {},
   data: function () {
     return {
       name: null,
@@ -73,23 +55,6 @@ export default {
       city: null,
       checks: [],
       prizes: [],
-      prizesTest: [
-        {
-          img: "megamart.png",
-          img2x: require("../../assets/images/prizes/megamart@2x.png"),
-          text: "Сертификат в МЕГАМАРТ номиналом <span class='_accent'>500 рублей</span>",
-        },
-        {
-          img: "yandex.png",
-          img2x: require("../../assets/images/prizes/yandex@2x.png"),
-          text: "Подписка «Яндекс Плюс» на <span class='_accent'>30 дней</span>",
-        },
-        {
-          img: "prize_6.png",
-          img2x: require("../../assets/images/prizes/prize_6@2x.png"),
-          text: "Универсальный сертификат Giftery на&nbsp;<span class='_accent'>10&nbsp;000 рублей</span>",
-        },
-      ],
     };
   },
 
@@ -98,11 +63,10 @@ export default {
       let apmButton = document.querySelector("#apm-scan-qr .apm-action-button");
       if (apmButton) apmButton.click();
       let $this = this;
-      let modalTrigger = document.querySelector('.modal-trigger')
-      modalTrigger.addEventListener('click', function(e) {
+      let modalTrigger = document.querySelector(".modal-trigger");
+      modalTrigger.addEventListener("click", function (e) {
         e.preventDefault();
         $this.$modal.show("check_requirements");
-
       });
     },
     showModal(name) {
@@ -111,7 +75,7 @@ export default {
     closeModal(name) {
       this.$modal.hide(name);
     },
-    showModalChecks(){
+    showModalChecks() {
       this.$modal.show("checks", { items: this.checks });
     },
     logout() {
@@ -123,7 +87,6 @@ export default {
         this.$store.dispatch("LogOut");
         this.$modal.show("success_delete");
       });
-
     },
   },
   mounted() {
@@ -141,11 +104,9 @@ export default {
     });
     this.$store.dispatch("GetPrizes").then((response) => {
       this.prizes = response.result;
-
     });
     this.$store.dispatch("GetChecks").then((response) => {
-
-        this.checks = response.result;
+      this.checks = response.result;
     });
   },
 };
@@ -160,15 +121,14 @@ export default {
     font-size: rem(24px);
     text-align: center;
     text-transform: uppercase;
-    color: $red_font;
-    z-index: -1;
+    color: $red;
 
     &-mt {
       font-family: "Bold";
       font-size: rem(24px);
       text-align: center;
       text-transform: uppercase;
-      color: $red_font;
+      color: $red;
       z-index: -1;
       margin-top: rem(35px);
     }
@@ -177,7 +137,7 @@ export default {
     display: flex;
     align-items: center;
     margin-bottom: rem(25px);
-    color: $red_font;
+    color: $red;
     font-family: "Bold";
     font-size: rem(14px);
     svg {
@@ -191,18 +151,6 @@ export default {
     min-height: calc(90vh);
     border-bottom: rem(3px) solid $yellow;
     z-index: 2;
-    &:before {
-      content: "";
-      position: absolute;
-      display: none;
-      top: 80%;
-      right: 4%;
-      width: rem(280px);
-      height: rem(280px);
-      background: url("../../assets/images/steps/chocolate.png") no-repeat
-        center;
-      background-size: contain;
-    }
   }
   &__info {
     text-align: center;
@@ -233,7 +181,7 @@ export default {
     &._outside-prizes {
       display: inline-block;
       margin-top: rem(30px);
-      color: $red_font;
+      color: $red;
       border-bottom: 1px solid currentColor;
       &:hover {
         border-block-color: transparent;
@@ -249,12 +197,7 @@ export default {
       min-height: auto;
       padding-top: rem(100px);
       padding-bottom: rem(78px);
-      background: url("../../assets/images/steps/background.png") no-repeat
-        center;
-      background-size: 123%;
-      &:before {
-        display: block;
-      }
+
     }
     &__name {
       margin-bottom: rem(35px);

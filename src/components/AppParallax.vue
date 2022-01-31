@@ -7,7 +7,12 @@
       :key="idx"
       :data-value="item.value"
     >
-      <img :src="item.img" class="parallax__background-image" :style="{width: item.width}" alt="" />
+      <img
+        :src="item.img"
+        class="parallax__background-image"
+        :style="{ width: item.width }"
+        alt=""
+      />
     </div>
   </div>
 </template>

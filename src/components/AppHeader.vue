@@ -19,6 +19,28 @@
           </div>
           <div class="header__nav">
             <router-link
+              class="header__nav-link"
+              active-class="header__nav-link--active"
+              :to="{ name: 'Home' }"
+            >
+              Об Акции
+            </router-link>
+            <a
+              :href="`${publicPath}docs/rules.docx`"
+              class="header__nav-link"
+              active-class="header__nav-link--active"
+            >
+              Правила
+            </a>
+            <a
+              href=""
+              class="header__nav-link"
+              active-class="header__nav-link--active"
+              @click.prevent="uploadCheck()"
+            >
+              Загрузить чек
+            </a>
+            <router-link
               v-for="(item, idx) in navigation"
               :key="idx"
               class="header__nav-link"
@@ -28,15 +50,7 @@
             >
             </router-link>
 
-            <a
-              href="#"
-              class="header__nav-link"
-              active-class="header__nav-link--active"
-              @click="showModal('feedback')"
-            >
-              Обратная связь
-            </a>
-            <router-link
+            <!-- <router-link
               class="header__nav-link"
               active-class="header__nav-link--active"
               to="/account"
@@ -47,21 +61,43 @@
             <a
               class="header__nav-link"
               href="javascript:void(0)"
-              @click="showModal('authorization')"
+              @click="clickPrize()"
               v-else
               >Личный кабинет</a
-            >
+            > -->
             <a
               v-if="user"
               href=""
               @click.prevent="logout()"
               class="header__nav-link _exit"
-            ></a>
+            ></a> 
           </div>
         </div>
 
         <div class="header__menu_mob">
           <button class="header__menu_mob-close" @click="showBurger()"></button>
+          <router-link
+            class="header__nav-link"
+            active-class="header__nav-link--active"
+            :to="{ name: 'Home' }"
+          >
+            Об Акции
+          </router-link>
+          <a
+            :href="`${publicPath}docs/rules.docx`"
+            class="header__nav-link"
+            active-class="header__nav-link--active"
+          >
+            Правила
+          </a>
+          <a
+            href="#"
+            class="header__nav-link"
+            active-class="header__nav-link--active"
+            @click="uploadCheck(), showBurger()"
+          >
+            Загрузить чек
+          </a>
           <router-link
             v-for="(item, idx) in navigation"
             :key="idx"
@@ -72,52 +108,12 @@
             v-html="item.name"
           >
           </router-link>
-          <div class="header__nav-retail">
-            <router-link
-              v-for="(item, i) in retailsNav"
-              :key="i + 1"
-              class="header__nav-retail-item"
-              :to="{ name: item.path }"
-              @click.native="showBurger()"
-            >
-              <img
-                class="header__nav-retail-img"
-                :src="require(`../assets/images/hero/${item.logo}@2x.png`)"
-                alt=""
-              />
-            </router-link>
-          </div>
-          <a
-            href="#"
-            class="header__nav-link"
-            active-class="header__nav-link--active"
-            @click="showModal('feedback'), showBurger()"
-          >
-            Обратная связь
-          </a>
-          <router-link
-            class="header__nav-link"
-            active-class="header__nav-link--active"
-            to="/account"
-            @click.native="showBurger()"
-            v-if="user"
-          >
-            Личный кабинет
-          </router-link>
-          <a
-            class="header__nav-link"
-            href="javascript:void(0)"
-            @click="showModal('authorization')"
-            v-else
-            >Личный кабинет</a
-          >
           <a
             v-if="user"
             href=""
             @click.prevent="logout()"
             class="header__nav-link _exit"
-            >Выход</a
-          >
+          >Выйти</a> 
         </div>
       </div>
     </div>
@@ -128,23 +124,20 @@
 export default {
   data() {
     return {
+      publicPath: process.env.BASE_URL,
       navigation: [
         {
-          name: "Главная",
-          path: "Home",
-        },
-      ],
-      retailsNav: [
-
-        {
-          path: "Dixy",
-          logo: "dixy",
+          name: "Вопрос-ответ",
+          path: "Faq",
         },
         {
-          path: "Megamart",
-          logo: "megamart",
+          name: "Победители",
+          path: "Winners",
         },
-
+        {
+          name: "Обратная связь",
+          path: "Feedback",
+        },
       ],
     };
   },
@@ -162,14 +155,14 @@ export default {
   },
 
   methods: {
-    clickPrize() {
-      if (this.$store.getters.user) {
+    uploadCheck() {
+      if (localStorage.getItem('uuid') != null) {
         let apmButton = document.querySelector(
           "#apm-scan-qr .apm-action-button"
         );
         if (apmButton) apmButton.click();
       } else {
-        this.$modal.show("authorization");
+        this.$modal.show("signup");
       }
     },
 
@@ -186,7 +179,6 @@ export default {
         header.classList.add("header--mob_active");
       else header.classList.remove("header--mob_active");
     },
-
   },
   mounted() {},
 };
@@ -194,16 +186,17 @@ export default {
 
 <style scoped lang="scss">
 .header {
-  position: fixed;
-  top: 0px;
-  left: 0;
+  position: relative;
   width: 100%;
+  height: rem(40px);
   background: #ffffff;
+  flex-shrink: 0;
   z-index: 999;
   .container {
     position: relative;
-    padding-top: rem(17px);
-    padding-bottom: rem(17px);
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
   &__row {
     display: flex;
@@ -221,7 +214,9 @@ export default {
     }
   }
   &__logo {
-    height: rem(21px);
+    position: absolute;
+    top: 0;
+    height: rem(91px);
   }
   &__inner {
     display: flex;
@@ -241,18 +236,18 @@ export default {
     font-size: rem(18px);
     line-height: 1.4;
     text-align: center;
-    color: #000;
+    color: $grey;
     text-transform: uppercase;
     border-bottom: 1px solid transparent;
     transition: all 0.3s ease-in-out;
 
     &.router-link-exact-active {
-      border-bottom-color: currentColor;
+      color: $red;
     }
   }
 
   &__nav-link:not(._exit):hover {
-    border-bottom-color: currentColor;
+    color: $red;
   }
   &__nav-retail {
     display: flex;
@@ -304,46 +299,17 @@ export default {
     height: rem(34px);
     flex-shrink: 0;
     margin-bottom: rem(30px);
-    background: #ffffff url("../assets/images/close_icon.svg") no-repeat center;
+    background: #ffffff url("../assets/images/icons/close_icon.svg") no-repeat center;
     background-size: rem(16px);
   }
   @media (min-width: $sm) {
+    height: rem(47px);
     &__logo {
-      height: rem(38px);
-    }
-    &__menu_mob {
-      max-width: 45%;
-      box-shadow: -5px 4px 10px rgba(0, 0, 0, 0.15);
-    }
-  }
-  @media (min-width: $md) {
-    &__logo {
-      height: rem(35px);
+      height: rem(107px);
     }
     &__nav {
       display: flex;
     }
-    &__nav-link {
-      font-size: rem(16px);
-      margin-left: rem(34px);
-      margin-bottom: 0;
-      line-height: 1.4;
-      text-align: center;
-      color: #a1224e;
-      text-transform: none;
-      border-bottom: 1px solid transparent;
-      transition: all 0.3s ease-in-out;
-      &._exit {
-        width: rem(27px);
-        height: rem(23px);
-        background: url("../assets/images/exit.svg") no-repeat center;
-        background-size: contain;
-      }
-    }
-    .container {
-      display: flex;
-    }
-
     &__nav_mob {
       display: flex;
       flex-direction: column;
@@ -353,6 +319,38 @@ export default {
     &__menu_mob {
       display: none;
     }
+    &__nav-link {
+      font-size: rem(12px);
+      margin-left: rem(20px);
+      margin-bottom: 0;
+      line-height: 1.4;
+      text-align: center;
+      color: $grey;
+      text-transform: none;
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s ease-in-out;
+      &._exit {
+        width: rem(27px);
+        height: rem(23px);
+        margin-top: rem(3px);
+        background: url("../assets/images/exit.svg") no-repeat center;
+        background-size: contain;
+      }
+    }
+  }
+  @media (min-width: $md) {
+    height: rem(117px);
+    &__logo {
+      height: rem(267px);
+    }
+    
+    &__nav-link {
+      font-size: rem(25px);
+      margin-left: rem(20px);
+      letter-spacing: rem(1px);
+    }
+
+    
   }
 }
 

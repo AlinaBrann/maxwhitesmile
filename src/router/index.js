@@ -6,7 +6,7 @@ import { isPortrait, isMobile, getOffset } from "../utils/device";
 
 Vue.use(VueRouter);
 
-const titlePrefix = "Поздравьте каждого, кто научил важному — ";
+const titlePrefix = "Максимум твоей улыбки — ";
 
 const routes = [
   {
@@ -25,23 +25,28 @@ const routes = [
       title: titlePrefix + "Профайл",
     },
   },
-
   {
-    path: "/dixy",
-    name: "Dixy",
-    component: () => import("../views/Dixy.vue"),
+    path: "/faq",
+    name: "Faq",
+    component: () => import("../views/Faq.vue"),
     meta: {
-      title: titlePrefix + "Дикси",
-      network: 2,
+      title: titlePrefix + "Вопрос-ответ",
     },
   },
   {
-    path: "/megamart",
-    name: "Megamart",
-    component: () => import("../views/Megamart.vue"),
+    path: "/feedback",
+    name: "Feedback",
+    component: () => import("../views/Feedback.vue"),
     meta: {
-      title: titlePrefix + "Мегамарт",
-      network: 3,
+      title: titlePrefix + "Обратная связь",
+    },
+  },
+  {
+    path: "/winners",
+    name: "Winners",
+    component: () => import("../views/Winners.vue"),
+    meta: {
+      title: titlePrefix + "Победители",
     },
   },
 ];

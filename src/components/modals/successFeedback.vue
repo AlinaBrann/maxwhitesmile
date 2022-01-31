@@ -7,6 +7,7 @@
   >
     <template v-slot:content>
       <div class="success_modal">
+        <p><br></p>
         <p class="modal__text success_modal__text">
           Спасибо за обращение! Мы скоро Вам ответим!
         </p>
