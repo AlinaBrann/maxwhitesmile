@@ -7,7 +7,7 @@ Vue.use(VueNoty);
 
 const store = require("../store");
 
-const BASE_API = "https://test.maxwhitesmile.ru/backend/api";
+const BASE_API = "https://maxwhitesmile.ru/backend/api";
 
 console.log(BASE_API);
 

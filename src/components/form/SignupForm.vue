@@ -241,7 +241,7 @@ export default {
               }
             } else {
               this.$modal.hide("signup");
-              localStorage.setItem('uuid', r.auth_key);
+              localStorage.setItem('uuid', r.userUuid);
               this.$root.$emit("initApm");
             }
           })

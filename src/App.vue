@@ -17,7 +17,7 @@
     <SuccessFeedback />
     <CommonError />
     <TemporarilyUnavailable />
-    <Apmcheck v-if="this.apmInit"></Apmcheck>
+    <Apmcheck v-if="apmInit"></Apmcheck>
   </div>
 </template>
 <script>

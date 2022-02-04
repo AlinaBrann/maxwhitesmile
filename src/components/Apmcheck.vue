@@ -51,7 +51,7 @@ export default {
           },
           qrParsed: {
             header: "Благодарим!",
-            subheader: "Ваш чек принят в обработку.",
+            subheader: "Ваш чек принят в обработку.<br>Срок проверки чека до 72 часов.",
           },
           uploadFiles: {
             header: "Загрузка фото",
